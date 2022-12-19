@@ -3,12 +3,22 @@ const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
 const sheetName = 'pokedex';
 const qu = 'Select *';
 const query = encodeURIComponent(qu);
+const invocation = new XMLHttpRequest();
 const url = `${base}&sheet=${sheetName}&tq=${query}`;
 const data = [];
 document.addEventListener('DOMContentLoaded', init);
 let randNum;
 
 const output = document.querySelector('.output');
+
+function callOtherDomain() {
+    if (invocation) {
+      invocation.open("GET", url, true);
+      invocation.withCredentials = true;
+      invocation.onreadystatechange = handler;
+      invocation.send();
+    }
+  }
 
 //button that takes in a random number and outputs the result to the html side
 document.getElementById("generateButton").onclick = function() {
