@@ -11,15 +11,6 @@ let randNum;
 
 const output = document.querySelector('.output');
 
-function callOtherDomain() {
-    if (invocation) {
-      invocation.open("GET", url, true);
-      invocation.withCredentials = true;
-      invocation.onreadystatechange = handler;
-      invocation.send();
-    }
-  }
-
 //button that takes in a random number and outputs the result to the html side
 document.getElementById("generateButton").onclick = function() {
     randNum = Math.floor(Math.random() * data.length);
